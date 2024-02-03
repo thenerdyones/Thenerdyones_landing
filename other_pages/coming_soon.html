@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Define the glow animation */
+        @keyframes pulse-glow {
+            0% {
+                text-shadow: 0 0 10px #7e57c2, 0 0 20px #7e57c2, 0 0 30px #7e57c2, 0 0 40px #7e57c2, 0 0 50px #7e57c2, 0 0 60px #7e57c2, 0 0 70px #7e57c2;
+            }
+            50% {
+                text-shadow: none;
+            }
+            100% {
+                text-shadow: 0 0 10px #7e57c2, 0 0 20px #7e57c2, 0 0 30px #7e57c2, 0 0 40px #7e57c2, 0 0 50px #7e57c2, 0 0 60px #7e57c2, 0 0 70px #7e57c2;
+            }
+        }
+
+        /* Apply the animation to the element with the "glow" class */
+        .glow {
+            animation: pulse-glow 2s infinite;
+        }
+
+        /* Stylish Countdown Timer */
+        .countdown {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #000000;
+        }
+    </style>
+</head>
+<body class="bg-white flex flex-col items-center justify-center h-screen">
+    
+    <!-- Logo -->
+    <div class="absolute top-0 left-0 m-8">
+        <!-- Replace with your actual logo -->
+        <img src="/src/LogoTheNerdyOnes.jpg" alt="Logo" class="h-24">
+    </div>
+
+    <!-- Coming Soon Text with Active Glow -->
+    <h1 class="text-6xl font-bold text-black glow">Coming Soon</h1>
+
+    <!-- Stylish Countdown Timer -->
+    <div class="countdown" id="countdown"></div>
+
+    <!-- Social Media Icons -->
+    <div class="absolute bottom-0 right-0 m-8 flex space-x-4">
+        <!-- Social media icons go here -->
+    </div>
+
+    <script>
+        // Calculate the countdown time
+        const countdownElement = document.getElementById('countdown');
+        const targetDate = new Date();
+        targetDate.setHours(targetDate.getHours() + 100); // Set the countdown to 100 hours from now
+
+        // Function to update the countdown timer
+        function updateCountdown() {
+            const currentDate = new Date();
+            const timeDifference = targetDate - currentDate;
+
+            const hours = Math.floor(timeDifference / 3600000); // 1 hour = 3600000 milliseconds
+            const minutes = Math.floor((timeDifference % 3600000) / 60000); // 1 minute = 60000 milliseconds
+            const seconds = Math.floor((timeDifference % 60000) / 1000); // 1 second = 1000 milliseconds
+
+            // Display the countdown in the format "HH:MM:SS"
+            const formattedHours = String(hours).padStart(2, '0');
+            const formattedMinutes = String(minutes).padStart(2, '0');
+            const formattedSeconds = String(seconds).padStart(2, '0');
+
+            countdownElement.textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+
+            // If the countdown has reached zero, you can take action here
+            if (timeDifference <= 0) {
+                countdownElement.textContent = '00:00:00';
+                // You can replace this with any action you want when the countdown is over
+            }
+        }
+
+        // Update the countdown every second
+        setInterval(updateCountdown, 1000);
+
+        // Initial update
+        updateCountdown();
+    </script>
+</body>
+</html>

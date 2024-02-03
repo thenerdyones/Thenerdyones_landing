@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .custom-header-color {
+            color: #7360DF;
+            /* Custom header color */
+        }
+
+        .custom-btn-bg {
+            background-color: #7360DF;
+            /* Custom button background color */
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <div class="container mx-auto p-8">
+        <div class="mx-auto bg-white p-8 rounded shadow-md" style="max-width: 600px;">
+            <form id="signupForm" action="http://localhost:3000/submit-form" method="POST">
+
+                <!-- Basic Personal Information -->
+                <div class="mb-4">
+                    <h2 class="text-xl font-bold mb-3 custom-header-color">Basic Personal Information</h2>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="fullName">Full Name</label>
+                        <input
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="fullName" type="text" placeholder="Full Name">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="emailAddress">Email
+                            Address</label>
+                        <input
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="emailAddress" type="email" placeholder="Email Address">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="phoneNumber">Phone Number</label>
+                        <input
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="phoneNumber" type="text" placeholder="Phone Number">
+                    </div>
+                </div>
+
+                <!-- Company Information -->
+                <div class="mb-4">
+                    <h2 class="text-xl font-bold mb-3 custom-header-color">Company Information (if applicable)</h2>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="companyName">Company Name</label>
+                        <input
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="companyName" type="text" placeholder="Company Name">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="companyWebsite">Company Website
+                            (optional)</label>
+                        <input
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="companyWebsite" type="url" placeholder="Company Website">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="industry">Industry</label>
+                        <input
+                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="industry" type="text" placeholder="Industry">
+                    </div>
+                </div>
+
+                <!-- Service-Specific Information -->
+                <div class="mb-4">
+                    <h2 class="text-xl font-bold mb-3 custom-header-color">Service-Specific Information</h2>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Business Type</label>
+                        <select
+                            class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            id="businessType" onchange="toggleOnlinePresence(this)">
+                            <option value="newBusiness">New Business</option>
+                            <option value="existingBusiness">Existing Business</option>
+                        </select>
+                    </div>
+                    <div class="mb-4 hidden" id="onlinePresenceSection">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="onlinePresence">Current Online
+                            Presence</label>
+                        <div class="flex flex-wrap">
+                            <div class="inline-block mr-2">
+                                <input type="checkbox" id="facebookPresence" class="mr-1">
+                                <label for="facebookPresence">Facebook</label>
+                            </div>
+                            <div class="inline-block mr-2">
+                                <input type="checkbox" id="tiktokPresence" class="mr-1">
+                                <label for="tiktokPresence">TikTok</label>
+                            </div>
+                            <div class="inline-block mr-2">
+                                <input type="checkbox" id="instagramPresence" class="mr-1">
+                                <label for="instagramPresence">Instagram</label>
+                            </div>
+                            <div class="inline-block mr-2">
+                                <input type="checkbox" id="xPresence" class="mr-1">
+                                <label for="xPresence">X</label>
+                            </div>
+                            <div class="inline-block mr-2">
+                                <input type="checkbox" id="websitePresence" class="mr-1">
+                                <label for="websitePresence">Website</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preferences and Additional Information -->
+                <div class="mb-4">
+                    <h2 class="text-xl font-bold mb-3 custom-header-color">Preferences and Additional Information</h2>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Preferred Communication Method</label>
+                        <div class="flex flex-wrap">
+                            <div class="inline-block mr-2">
+                                <input type="checkbox" id="emailCommunication" class="mr-1">
+                                <label for="emailCommunication">Email</label>
+                            </div>
+                            <div class="inline-block mr-2">
+                                <input type="checkbox" id="phoneCommunication" class="mr-1">
+                                <label for="phoneCommunication">Phone</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <button
+                            class="custom-btn-bg hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            type="submit">
+                            Submit
+                        </button>
+                    </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to toggle the online presence section
+        function toggleOnlinePresence(selectElement) {
+            const onlinePresenceSection = document.getElementById('onlinePresenceSection');
+            if (selectElement.value === 'newBusiness') {
+                onlinePresenceSection.classList.add('hidden');
+            } else {
+                onlinePresenceSection.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+
+</html>

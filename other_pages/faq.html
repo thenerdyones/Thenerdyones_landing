@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px 20px;
+        }
+
+        header img {
+            height: 40px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-left: 10%;
+            position: relative;
+        }
+
+        .faq-row {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin: 10px 0;
+            padding: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+            cursor: pointer;
+        }
+
+        .faq-row:hover {
+            background-color: #F2AFEF; /* Changed color to #F2AFEF */
+            transition-delay: 0.1s; /* Smooth delay for color change */
+            transform: translateY(-5px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0.9;
+        }
+
+        .faq-row h3 {
+            margin: 0;
+            font-size: 20px;
+            color: #000; /* Keep text black */
+        }
+
+        .faq-description {
+            font-size: 16px;
+        }
+
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            background-color: #594d50; /* Changed color to #F2AFEF */
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+
+        .pagination a:hover {
+            background-color: #000000; /* Lighter shade for hover effect */
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            color: #000;
+            font-size: 20px;
+        }
+
+        /* Dim the main page when modal is open */
+        .modal-open {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Dimmed background */
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Replace with your logo image source -->
+        <img src="your-logo.png" alt="Logo">
+    </header>
+
+    <div class="container">
+        <div class="faq-row" id="faq1">
+            <h3>FAQ Topic 1</h3>
+            <p class="faq-description">Description for FAQ Topic 1 goes here.</p>
+        </div>
+        <div class="faq-row" id="faq2">
+            <h3>FAQ Topic 2</h3>
+            <p class="faq-description">Description for FAQ Topic 2 goes here.</p>
+        </div>
+        <div class="faq-row" id="faq3">
+            <h3>FAQ Topic 3</h3>
+            <p class="faq-description">Description for FAQ Topic 3 goes here.</p>
+        </div>
+        <div class="faq-row" id="faq4">
+            <h3>FAQ Topic 4</h3>
+            <p class="faq-description">Description for FAQ Topic 4 goes here.</p>
+        </div>
+        <div class="faq-row" id="faq5">
+            <h3>FAQ Topic 5</h3>
+            <p class="faq-description">Description for FAQ Topic 5 goes here.</p>
+        </div>
+
+        <div class="pagination">
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="modal1">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal1')">&times;</span>
+            <h3>FAQ Topic 1</h3>
+            <p>Modal content for FAQ Topic 1.</p>
+        </div>
+    </div>
+    <div class="modal" id="modal2">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal2')">&times;</span>
+            <h3>FAQ Topic 2</h3>
+            <p>Modal content for FAQ Topic 2.</p>
+        </div>
+    </div>
+    <div class="modal" id="modal3">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal3')">&times;</span>
+            <h3>FAQ Topic 3</h3>
+            <p>Modal content for FAQ Topic 3.</p>
+        </div>
+    </div>
+    <div class="modal" id="modal4">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal4')">&times;</span>
+            <h3>FAQ Topic 4</h3>
+            <p>Modal content for FAQ Topic 4.</p>
+        </div>
+    </div>
+    <div class="modal" id="modal5">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('modal5')">&times;</span>
+            <h3>FAQ Topic 5</h3>
+            <p>Modal content for FAQ Topic 5.</p>
+        </div>
+    </div>
+
+    <!-- JavaScript to handle modal -->
+    <script>
+        function openModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "block";
+            document.body.classList.add("modal-open"); // Add class to dim the main page
+        }
+
+        function closeModal(modalId) {
+            var modal = document.getElementById(modalId);
+            modal.style.display = "none";
+            document.body.classList.remove("modal-open"); // Remove class to undim the main page
+        }
+
+        // Event listeners for FAQ rows
+        document.getElementById("faq1").addEventListener("click", function() {
+            openModal("modal1");
+        });
+
+        document.getElementById("faq2").addEventListener("click", function() {
+            openModal("modal2");
+        });
+
+        document.getElementById("faq3").addEventListener("click", function() {
+            openModal("modal3");
+        });
+
+        document.getElementById("faq4").addEventListener("click", function() {
+            openModal("modal4");
+        });
+
+        document.getElementById("faq5").addEventListener("click", function() {
+            openModal("modal5");
+        });
+    </script>
+</body>
+</html>
