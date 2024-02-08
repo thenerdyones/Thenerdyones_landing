@@ -24,14 +24,15 @@ $message = $_POST['message'];
 $stmt->execute();
 
 if ($stmt->execute()) {
-    echo "<script>
-            document.getElementById('submissionModal').classList.remove('hidden');
-            setTimeout(function() {
-                window.location.href = '/';
-            }, 3000); // Redirect after 3 seconds
-          </script>";
+  echo "<script>
+          document.getElementById('successMessage').classList.remove('hidden');
+          document.getElementById('submissionModal').classList.add('hidden');
+          setTimeout(function() {
+              window.location.href = '/';
+          }, 3000); // Redirect after 3 seconds
+        </script>";
 } else {
-    echo "Error: " . $stmt->error;
+  echo "Error: " . $stmt->error;
 }
 
 $stmt->close();
