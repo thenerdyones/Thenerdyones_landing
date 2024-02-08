@@ -28,7 +28,7 @@ if ($stmt->execute()) {
           document.getElementById('successMessage').classList.remove('hidden');
           document.getElementById('submissionModal').classList.add('hidden');
           setTimeout(function() {
-              window.location.href = '/';
+              window.location.href = '/index.html';
           }, 3000); // Redirect after 3 seconds
         </script>";
 } else {
