@@ -69,7 +69,8 @@
     <div class="background-image flex-1 h-"></div>
     <div class="form-container bg-white p-8 rounded-lg shadow-lg flex flex-col justify-center relative">
 
-        <a href="/" class="absolute top-0 left-0 ml-8 mt-4 bg-gray-100 hover:bg-gray-300 text-gray-800 font-light py-2 px-4 rounded">
+        <a href="/"
+            class="absolute top-0 left-0 ml-8 mt-4 bg-gray-100 hover:bg-gray-300 text-gray-800 font-light py-2 px-4 rounded">
             Back
         </a>
 
@@ -79,7 +80,7 @@
         </div>
 
         <!-- Form -->
-        <form id="contactForm">
+        <form id="contactForm" action="submit.php" method="POST">
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Name</label>
                 <div class="mb-4 flex items-center">
@@ -123,6 +124,17 @@
                     Submit
                 </button>
             </div>
+
+            <!-- Modal HTML -->
+            <div id="submissionModal" class="hidden fixed z-10 inset-0 overflow-y-auto">
+                <div class="flex items-center justify-center min-h-screen">
+                    <div class="bg-white rounded px-4 pt-5 pb-4 text-center">
+                        <h2 class="text-lg font-bold mb-4">Thank you!</h2>
+                        <p>Your submission has been received. You'll be redirected shortly.</p>
+                    </div>
+                </div>
+            </div>
+
         </form>
 
         <!-- Loading Spinner -->
@@ -135,40 +147,6 @@
     </div>
 
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-            const form = this;
-            const formData = new FormData(form);
-            const loadingSpinner = document.querySelector('.loading-spinner');
-            const successMessage = document.getElementById('successMessage');
-
-            // Convert FormData to URL-encoded string
-            const urlEncodedData = new URLSearchParams(formData).toString();
-
-            // Show loading spinner
-            loadingSpinner.classList.remove('hidden');
-            form.classList.add('hidden');
-
-            // AJAX request to server
-            fetch('/send', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: urlEncodedData
-            })
-                .then(response => response.text()) // Assuming server response is plain text
-                .then(data => {
-                    // After successful submission
-                    loadingSpinner.classList.add('hidden');
-                    successMessage.classList.remove('hidden');
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    // Optionally handle errors here, such as re-showing the form
-                });
-        });
-
         // Function to validate input
         function validateInput(inputId, checkmarkId, isEmail = false) {
             const input = document.getElementById(inputId);
